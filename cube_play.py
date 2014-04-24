@@ -1,3 +1,4 @@
+import time
 from pyglet.gl import *
 import pyglet.app as app
 import pyglet.window as window
@@ -25,7 +26,7 @@ def GLuintArray(*args):
     return (GLuint * len(args))(*[int(n) for n in args])
 
 class Cube():
-    def __init__(self, length, x=0, y=0, z=0, rx=0, ry=0, rz=0):
+    def __init__(self, length, x=0, y=0, z=0, rx=45, ry=45, rz=45):
         self.length = length
         self.x = x
         self.y = y
@@ -58,16 +59,17 @@ class Cube():
         glEnableClientState(GL_COLOR_ARRAY)
         glVertexPointer(3, GL_FLOAT, 0, vertices)
         glColorPointer(4, GL_FLOAT, 0, colors)
-        glDrawElements(GL_TRIANGLES, len(indices), GL_UNSIGNED_INT, indices)
+        glDrawElements(GL_LINES, len(indices), GL_UNSIGNED_INT, indices)
         glPopClientAttrib()
 
         glEndList()
 
 def rotate(cube):
     # pass
-    cube.rx = (cube.rx + 2) % 360
-    cube.ry = (cube.ry + 1) % 360
-    cube.rz = (cube.rz + 5) % 360
+    cube.rx = (cube.rx + 0) % 360
+    cube.ry = (cube.ry + 0) % 360
+    cube.rz = (cube.rz + 0) % 360
+    
 
 def draw(cube):
     glPushMatrix()
@@ -95,6 +97,7 @@ def on_draw():
     glLoadIdentity()
     glTranslatef(0, 0, -100)
     draw(cube)
+    # time.sleep(1000)
 
 @win.event
 def on_key_press(symbol, modifiers):
