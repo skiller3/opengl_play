@@ -1,4 +1,4 @@
-from OpenGL.GL import *
+from pyglet.gl import *
 import pyglet.app as app
 import pyglet.window as window
 import pyglet.clock as clock
